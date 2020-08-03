@@ -4,40 +4,39 @@ using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
 using UnityEditor;
+using UnityEngine.Rendering;
+
 
 public class DetectionController : MonoBehaviour
 {
     public UnityEngine.UI.Text txtDebug;
-    public Camera camera;
-    private bool askDetection=false;
+    
+    public Texture2D ScreenshotTexture { get; private set; }
+       private int _screenshotTextureH=1080;
+       private int _screenshotTextureW=1920;
+        private void Awake()
+        {  
+            ScreenshotTexture = new Texture2D(_screenshotTextureW, _screenshotTextureH, TextureFormat.RGB24, false);
+        }
+ 
     private readonly string baseurl = "http://192.168.1.141:5000/";
     // Start is called before the first frame update
-    void Start()
+    IEnumerator AskDetection()
     {
+        yield return new WaitForEndOfFrame();
+        RenderTexture renderTexture = RenderTexture.GetTemporary(Screen.width,Screen.height,24,RenderTextureFormat.ARGB32,RenderTextureReadWrite.Default,1);
+        ScreenCapture.CaptureScreenshotIntoRenderTexture(renderTexture);
+        RenderTexture.active = renderTexture;
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
-    }
-    private void OnPostRender()
-    {
-        if (askDetection)
-        {
-            askDetection = false;
-            RenderTexture renderTexture = camera.targetTexture;
-
-            Texture2D renderResult = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
-            Rect rect = new Rect(0,0,renderTexture.width, renderTexture.height);
-            renderResult.ReadPixels(rect, 0, 0);
-            byte[] array = renderResult.EncodeToJPG();
-        }
-    }
-    IEnumerator AskDetection(byte[] img)
-    {
-        string url = baseurl + "detect/synth1";
+        txtDebug.text="we bello hguaglio";
+        ScreenshotTexture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height),0, 0);
+        ScreenshotTexture.Apply();
+        
+        byte[] img = ScreenshotTexture.EncodeToJPG();
+        
+            
+        string url = baseurl + "predict/synth1";
         List<IMultipartFormSection> data = new List<IMultipartFormSection>();
         data.Add(new MultipartFormFileSection("image",img,"img.jpg","image/jpeg"));
         UnityWebRequest request = UnityWebRequest.Post(url, data);
@@ -52,9 +51,13 @@ public class DetectionController : MonoBehaviour
         txtDebug.text = response;
     }
     public void Detect()
-    {
-        camera.targetTexture = RenderTexture.GetTemporary(416, 416, 16);
-        askDetection = true;
+    { 
+        txtDebug.text="asking for detection";
+       
+        StartCoroutine(AskDetection());
+        //txtDebug.text = "asking detection";
+        
+       
     }
     IEnumerator getText() {
         string url = baseurl + "test";
@@ -70,10 +73,5 @@ public class DetectionController : MonoBehaviour
         JSONNode data = JSON.Parse(request.downloadHandler.text);
         txtDebug.text = data["content"];
 
-    }
-
-    public void OnTestButton() {
-        StartCoroutine(getText());
-        
     }
 }

@@ -39,6 +39,8 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.RawImage
     - UnityEngine.UI.Text
+    com.unity.multiplayer-hlapi.Runtime.dll:
+    - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
     Assets/GoogleARCore/Examples/HelloAR/Scenes/HelloAR.unity:
     - Class: 1
@@ -72,63 +74,63 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11190}
+      Script: {instanceID: 11212}
     - Class: 114
-      Script: {instanceID: 11194}
+      Script: {instanceID: 11216}
     - Class: 114
-      Script: {instanceID: 11214}
+      Script: {instanceID: 11236}
     - Class: 114
-      Script: {instanceID: 11472}
+      Script: {instanceID: 11494}
     - Class: 114
-      Script: {instanceID: 11524}
+      Script: {instanceID: 11546}
     - Class: 114
-      Script: {instanceID: 11608}
+      Script: {instanceID: 11630}
     - Class: 114
-      Script: {instanceID: 11764}
+      Script: {instanceID: 11786}
     - Class: 114
-      Script: {instanceID: 11962}
+      Script: {instanceID: 11984}
     - Class: 114
-      Script: {instanceID: 11980}
+      Script: {instanceID: 12002}
     - Class: 114
-      Script: {instanceID: 12044}
+      Script: {instanceID: 12066}
     - Class: 114
-      Script: {instanceID: 12082}
+      Script: {instanceID: 12104}
     - Class: 114
-      Script: {instanceID: 12166}
+      Script: {instanceID: 12188}
     - Class: 114
-      Script: {instanceID: 12266}
+      Script: {instanceID: 12288}
     - Class: 114
-      Script: {instanceID: 12456}
+      Script: {instanceID: 12478}
     - Class: 114
-      Script: {instanceID: 12634}
+      Script: {instanceID: 12616}
     - Class: 114
-      Script: {instanceID: 12714}
+      Script: {instanceID: 12658}
     - Class: 114
-      Script: {instanceID: 12834}
+      Script: {instanceID: 12738}
     - Class: 114
-      Script: {instanceID: 12892}
+      Script: {instanceID: 12858}
     - Class: 114
-      Script: {instanceID: 12910}
+      Script: {instanceID: 12918}
     - Class: 114
-      Script: {instanceID: 12924}
+      Script: {instanceID: 12936}
     - Class: 114
-      Script: {instanceID: 13014}
+      Script: {instanceID: 12950}
     - Class: 114
-      Script: {instanceID: 13164}
+      Script: {instanceID: 13040}
     - Class: 114
-      Script: {instanceID: 13248}
+      Script: {instanceID: 13190}
     - Class: 114
-      Script: {instanceID: 13252}
+      Script: {instanceID: 13274}
     - Class: 114
-      Script: {instanceID: 13358}
+      Script: {instanceID: 13278}
     - Class: 114
-      Script: {instanceID: 13410}
+      Script: {instanceID: 13384}
     - Class: 114
-      Script: {instanceID: 13470}
+      Script: {instanceID: 13436}
     - Class: 114
-      Script: {instanceID: 13756}
+      Script: {instanceID: 13496}
     - Class: 114
-      Script: {instanceID: 15362}
+      Script: {instanceID: 13782}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -580,6 +582,12 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
+      Hash: 89329368e55457fd957f28b3073de860
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DetectionController
+  - hash:
+      serializedVersion: 2
       Hash: 309c0efd4456d6e902823ab02606508d
     assemblyName: Assembly-CSharp.dll
     namespaceName: GoogleARCore.Examples.ObjectManipulation
@@ -956,13 +964,7 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 89329368e55457fd957f28b3073de860
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: DetectionController
   platform: 13
   scenePathNames:
   - Assets/GoogleARCore/Examples/HelloAR/Scenes/HelloAR.unity
-  playerPath: C:/Users/dbkir/Desktop/app.apk
+  playerPath: /home/dbkira/Documents/Unity AR Detector/Detector-Unity/app.apk
